@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>🌸 My Project Deck</title>
+  <style>
+    :root{
+      --bg:#fffaf0;--card:#ffffff;--muted:#6b6b6b;
+      --accent:#f092b2;--accent2:#fffb99;--shadow:rgba(0,0,0,0.06);
+    }
+    body{
+      font-family:Inter, system-ui, -apple-system,"Segoe UI", Roboto, Arial;
+      background:linear-gradient(180deg,var(--bg) 0%,#fff 100%);
+      color:#111; margin:0; padding:32px; text-align:center;
+    }
+    h1{font-size:32px; display:flex; align-items:center; justify-content:center; gap:8px;}
+    .btn{
+      background:#000; color:#fff; padding:10px 22px; border-radius:8px;
+      text-decoration:none; display:inline-block; margin:20px 0; font-weight:600;
+      box-shadow:0 4px 10px var(--shadow);
+    }
+    .btn:hover{background:#808080;}
+    .deck{
+      display:flex; flex-wrap:wrap; justify-content:center; gap:24px; margin-top:30px;
+    }
+    .card{
+      width:320px; background:var(--card); border-radius:16px; padding:20px;
+      box-shadow:0 6px 18px var(--shadow); transition:.2s;
+    }
+    .card:hover{transform:translateY(-5px);}
+    .card h2{text-transform:capitalize; margin-bottom:10px;}
+    .markdown h1,.markdown h2,.markdown h3,.markdown p{margin:0;font-size:14px;color:var(--muted);}
+  </style>
+</head>
+<body>
+  <h1> My Project Deck</h1>
+  <a href="{% url 'add_project' %}" class="btn">➕ Add New Project</a>
+
+  <div class="deck">
+    {% for project in projects %}
+    <div class="card">
+      <h2>{{ project.title }}</h2>
+      <div class="markdown">{{ project.rendered_preview|safe }}</div>
+      <a href="{% url 'project_overview' project.id %}" class="btn" style="margin-top:15px;">View Overview</a>
+    </div>
+    {% empty %}
+      <p style="color:#777; font-size:15px; text-align:center; width:100%;">
+      No projects yet 🌱 — start by adding your first one!
+    </p>
+    {% endfor %}
+  </div>
+</body>
+</html>
