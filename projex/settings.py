@@ -24,13 +24,15 @@ SECRET_KEY = 'django-insecure-o+yz+tuh0#p!x2tsw)4(n=p-+le!vfs39h_60^!^-ygqvqs=m^
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'projex-i3o1.onrender.com',
+    '.onrender.com',
+    'localhost',
+    '127.0.0.1',
+]
 
 CSRF_TRUSTED_ORIGINS = ['https://projex-i3o1.onrender.com']
-
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
