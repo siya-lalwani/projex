@@ -31,7 +31,7 @@ def project_list(request):
                 imgs = [f["download_url"] for f in files if f["name"].lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))]
                 if imgs:
                     p.graph_image = random.choice(imgs)
-            if not p.graph_image:
+            else:
                 p.graph_image = random.choice(fallback_graphs)   
         except Exception:
             pass
