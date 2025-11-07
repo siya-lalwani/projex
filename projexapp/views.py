@@ -8,10 +8,10 @@ def project_list(request):
     projects = Project.objects.all().order_by('-created')
 
     fallback_graphs = [
-        "https://www.chartjs.org/img/chartjs-logo.svg",
-        "https://upload.wikimedia.org/wikipedia/commons/3/3a/Normal_distribution_pdf.svg",
-        "https://matplotlib.org/stable/_images/sphx_glr_bar_label_demo_thumb.png",
-        "https://seaborn.pydata.org/_images/function_overview_8_0.png"
+        "https://images.ctfassets.net/w6r2i5d8q73s/2AV45NpN8eiZ0lOWHxL5bk/e43cee85fa84a174beb34a42a2536216/graphs_bar_chart_product_image_EN_big_3_2.png?fm=webp&q=75",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHYmng3U5_7H26__GVHikd9ZIsdNocj0KbuGOIt3tcIJrxoz9iap45eYmFS1dReAnNk28&usqp=CAU",
+        "https://images.ctfassets.net/w6r2i5d8q73s/AYozbMBpRTsrTZAn6xavI/827fdfca0526529aa53be9fbf70c7c83/graphs_product_image_EN_standard_3_2.png",
+        "https://images.ctfassets.net/w6r2i5d8q73s/7onNn71dsozT70enDLpnpS/93a52b96926ee45e0c75688c076785a9/graphs_product_image_EN_standard_3_2.png"
     ]
 
     for p in projects:
@@ -31,12 +31,13 @@ def project_list(request):
                 imgs = [f["download_url"] for f in files if f["name"].lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))]
                 if imgs:
                     p.graph_image = random.choice(imgs)
+            if not p.graph_image:
+                p.graph_image = random.choice(fallback_graphs)   
         except Exception:
             pass
 
         # If nothing found, assign fallback
-        if not p.graph_image:
-            p.graph_image = random.choice(fallback_graphs)
+       
 
         # Quick guess for libraries (basic keyword detection)
         libs = []
