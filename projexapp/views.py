@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from .models import Project
 import requests, markdown2, re, textwrap, random
 
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+headers = {"Authorization": f"token {GITHUB_TOKEN}"} if GITHUB_TOKEN else {}
+
 def project_list(request):
     if Project.objects.count() == 0:
         return redirect('add_project')
