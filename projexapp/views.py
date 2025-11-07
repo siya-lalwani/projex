@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Project
 import requests, markdown2, re, textwrap, random
-
+import os
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 headers = {"Authorization": f"token {GITHUB_TOKEN}"} if GITHUB_TOKEN else {}
 
