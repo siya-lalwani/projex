@@ -20,7 +20,7 @@ def project_list(request):
         plain_text = re.sub(r'\s+', ' ', plain_text).strip()
         p.rendered_preview = textwrap.shorten(plain_text, width=250, placeholder=" …")
 
-        # Try to find graph image from repo
+       # Try to find graph image from repo
         p.graph_image = None
         try:
             username, repo = p.github_link.split("github.com/")[1].split("/")[:2]
@@ -31,13 +31,12 @@ def project_list(request):
                 imgs = [f["download_url"] for f in files if f["name"].lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))]
                 if imgs:
                     p.graph_image = random.choice(imgs)
-            else:
-                p.graph_image = random.choice(fallback_graphs)   
         except Exception:
             pass
 
         # If nothing found, assign fallback
-       
+        if not p.graph_image:
+            p.graph_image = random.choice(fallback_graphs)
 
         # Quick guess for libraries (basic keyword detection)
         libs = []
