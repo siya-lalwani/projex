@@ -93,8 +93,9 @@
 
   <div class="deck">
     {% for project in projects %}
+      {% load static %}
       <div class="card">
-        <img src="{{ project.graph_image }}" alt="Graph preview">
+        <img src="{% if project.graph_image %}{{ project.graph_image }}{% else %}{% static 'fallback_graph.jpg' %}{% endif %}" alt="Graph preview">
         <div class="card-content">
           <h2>{{ project.title }}</h2>
           <div class="markdown">{{ project.rendered_preview|safe }}</div>
