@@ -28,7 +28,7 @@ def project_list(request):
         try:
             username, repo = p.github_link.split("github.com/")[1].split("/")[:2]
             api_url = f"https://api.github.com/repos/{username}/{repo}/contents/graphs"
-            res = requests.get(api_url)
+             res = requests.get(api_url, headers=headers, timeout=10)
             if res.status_code == 200:
                 files = res.json()
                 imgs = [f["download_url"] for f in files if f["name"].lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))]
