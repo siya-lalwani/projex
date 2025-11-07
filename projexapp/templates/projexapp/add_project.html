@@ -6,47 +6,99 @@
   <title>Add New Project</title>
   <style>
     :root {
-      --bg: #fffaf0;--card: #ffffff;--muted: #6b6b6b;
-      --accent: #f092b2;--accent2: #fff599;--shadow: rgba(0,0,0,0.08);
+      --bg: #f9f9f9;
+      --card: #ffffff;
+      --muted: #4b4b4b;
+      --accent-yellow: #ffe97f;
+      --accent-blue: #8ecae6;
+      --accent-green: #a7d99e;
+      --shadow: rgba(0,0,0,0.08);
     }
+
     body {
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
       background: linear-gradient(180deg, var(--bg) 0%, #fff 100%);
       display: flex; justify-content: center; align-items: center;
       height: 100vh; margin: 0;
     }
+
     .container {
-      background: var(--card); padding: 40px 50px; border-radius: 16px;
-      box-shadow: 0 8px 24px var(--shadow); max-width: 420px; width: 90%;
+      background: var(--card);
+      padding: 40px 50px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px var(--shadow);
+      max-width: 420px;
+      width: 90%;
       text-align: center;
+      border-top: 6px solid var(--accent-blue);
     }
-    h1 { margin-bottom: 25px; font-size: 28px; color: #111; }
-    form { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+
+    h1 {
+      margin-bottom: 25px;
+      font-size: 28px;
+      color: #000;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
     input {
-      width: 100%; padding: 12px 15px; border: 1px solid #ddd;
-      border-radius: 8px; font-size: 15px; transition: border-color 0.2s ease;
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 15px;
+      transition: border-color 0.2s ease;
     }
-    input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 4px var(--accent); }
+
+    input:focus {
+      outline: none;
+      border-color: var(--accent-green);
+      box-shadow: 0 0 4px var(--accent-green);
+    }
+
     button {
-      background: #000; color: #fff; border: none; border-radius: 8px;
-      padding: 12px 20px; font-size: 15px; cursor: pointer;
-      margin-top: 8px; transition: background 0.2s;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s;
     }
-    button:hover { background: #808080; }
+
+    button:hover { background: #444; }
+
     p.note {
-      color: var(--muted); font-size: 13px; margin-top: 4px;
-      background: var(--accent2); padding: 10px; border-radius: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+      background: var(--accent-yellow);
+      padding: 10px;
+      border-radius: 8px;
     }
+
     a.back {
-      display: inline-block; margin-top: 20px; font-size: 14px;
-      color: var(--accent); text-decoration: none; transition: color 0.2s;
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 14px;
+      color: var(--accent-blue);
+      text-decoration: none;
+      transition: color 0.2s;
     }
+
     a.back:hover { color: #000; }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1> Add a New Project</h1>
+    <h1>🪴 Add a New Project</h1>
     <form method="POST">
       {% csrf_token %}
       <input type="text" name="title" placeholder="Enter Project Title" required>

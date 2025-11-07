@@ -1,16 +1,50 @@
 from django.shortcuts import render, redirect
 from .models import Project
-import requests, markdown2, re, textwrap
+import requests, markdown2, re, textwrap, random
 
 def project_list(request):
     if Project.objects.count() == 0:
         return redirect('add_project')
     projects = Project.objects.all().order_by('-created')
+
+    fallback_graphs = [
+        "https://www.chartjs.org/img/chartjs-logo.svg",
+        "https://upload.wikimedia.org/wikipedia/commons/3/3a/Normal_distribution_pdf.svg",
+        "https://matplotlib.org/stable/_images/sphx_glr_bar_label_demo_thumb.png",
+        "https://seaborn.pydata.org/_images/function_overview_8_0.png"
+    ]
+
     for p in projects:
+        # Clean text for preview
         plain_text = re.sub(r'[#*_>`\[\]\(\)\-\!]', '', p.overview)
         plain_text = re.sub(r'\s+', ' ', plain_text).strip()
-        short_preview = textwrap.shorten(plain_text, width=300, placeholder=" …")
-        p.rendered_preview = short_preview
+        p.rendered_preview = textwrap.shorten(plain_text, width=250, placeholder=" …")
+
+        # Try to find graph image from repo
+        p.graph_image = None
+        try:
+            username, repo = p.github_link.split("github.com/")[1].split("/")[:2]
+            api_url = f"https://api.github.com/repos/{username}/{repo}/contents/graphs"
+            res = requests.get(api_url)
+            if res.status_code == 200:
+                files = res.json()
+                imgs = [f["download_url"] for f in files if f["name"].lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))]
+                if imgs:
+                    p.graph_image = random.choice(imgs)
+        except Exception:
+            pass
+
+        # If nothing found, assign fallback
+        if not p.graph_image:
+            p.graph_image = random.choice(fallback_graphs)
+
+        # Quick guess for libraries (basic keyword detection)
+        libs = []
+        for lib in ["pandas", "numpy", "matplotlib", "seaborn", "sklearn", "tensorflow", "keras", "plotly"]:
+            if lib.lower() in p.overview.lower():
+                libs.append(lib)
+        p.libraries = libs
+
     return render(request, 'projexapp/project_list.html', {'projects': projects})
 
 def add_project(request):
