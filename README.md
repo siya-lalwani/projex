@@ -5,7 +5,7 @@
 
 ---
 
-## 💡 Overview
+##  Overview
 **Projex** is a simple web app that allows users to **add their GitHub project link** and automatically generates a **beautiful overview card** for each repository.  
 
 When a GitHub repo link is added, the app:
