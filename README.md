@@ -1,4 +1,4 @@
-# 🧠 Projex — AI-Powered Project Overview Generator
+#  Projex — AI-Powered Project Overview Generator
 
 **Live Demo:** [https://projex-i3o1.onrender.com](https://projex-i3o1.onrender.com)  
 **Built with:** Django, Python, HTML/CSS, Markdown2, Requests  
@@ -18,26 +18,26 @@ Perfect for quickly showcasing your **AI/ML**, **data science**, or **Python pro
 
 ---
 
-## ⚙️ Features
-- 🪄 **Automatic README fetch:** Just paste a GitHub repo link — no manual input required.  
-- 📄 **Smart Overview:** Markdown is parsed and formatted into clean plain text.  
-- 🧩 **Multi-Project Support:** Add as many repos as you like; each gets its own project card.  
-- 🔗 **Direct GitHub Redirects:** Each project overview links back to its original repository.  
-- 💅 **Minimal & Elegant UI:** Styled with basic HTML + CSS for a lightweight experience.  
+##  Features
+-  **Automatic README fetch:** Just paste a GitHub repo link — no manual input required.  
+-  **Smart Overview:** Markdown is parsed and formatted into clean plain text.  
+-  **Multi-Project Support:** Add as many repos as you like; each gets its own project card.  
+-  **Direct GitHub Redirects:** Each project overview links back to its original repository.  
+-  **Minimal & Elegant UI:** Styled with basic HTML + CSS for a lightweight experience.  
 
 ---
 
-## 🏗️ Tech Stack
+##  Tech Stack
 | Layer | Tools Used |
 |-------|-------------|
-| **Frontend** | HTML, CSS, minimal JavaScript |
-| **Backend** | Django 5, Python 3.10 |
+| **Frontend** | HTML, CSS |
+| **Backend** | Django , Python  |
 | **Dependencies** | `markdown2`, `requests`, `whitenoise`, `gunicorn`, `dj-database-url` |
-| **Hosting** | Render.com (Cloud Deployment) |
+| **Hosting** | Render.com (Deployment) |
 
 ---
 
-## 🚀 How It Works
+##  How It Works
 1. Visit the live app at **[projex-i3o1.onrender.com](https://projex-i3o1.onrender.com)**
 2. Click “Add Project”
 3. Enter your project title and GitHub repository link *(ensure the repo has a README.md file)*
@@ -46,7 +46,7 @@ Perfect for quickly showcasing your **AI/ML**, **data science**, or **Python pro
 
 ---
 
-## 🛠️ Local Setup
+##  Local Setup
 
 Clone and run locally:
 
